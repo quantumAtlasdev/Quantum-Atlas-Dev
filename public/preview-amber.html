@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantum Atlas — Amber Theme Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Current palette (reference) ── */
+    /* electric-blue: #4F8EF7  →  amber: #FFBF00  (the swap) */
+
+    /* ── Design tokens ── */
+    :root {
+      --space-black:   #05080F;
+      --space-dark:    #0D1117;
+      --space-card:    #13192A;
+      --space-border:  #1E2D4A;
+      --amber:         #FFBF00;   /* ← replaces #4F8EF7 */
+      --amber-dim:     rgba(255,191,0,0.12);
+      --amber-glow:    rgba(255,191,0,0.06);
+      --green:         #00E5A0;
+      --purple:        #A855F7;
+      --text-primary:  #E8EEFF;
+      --text-secondary:#8896B3;
+      --mono-accent:   #64FFDA;
+      --font-display:  'Space Grotesk', sans-serif;
+      --font-body:     'Inter', sans-serif;
+      --font-mono:     'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--space-dark);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* ── Utility ── */
+    .label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    .label.amber { color: var(--amber); }
+    .label.muted { color: var(--text-secondary); }
+
+    /* ── Banner ── */
+    .preview-banner {
+      background: var(--amber);
+      color: #000;
+      text-align: center;
+      padding: 10px 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    .preview-banner span { opacity: 0.65; margin: 0 16px; }
+
+    /* ════════════════════════════════
+       NAV
+    ════════════════════════════════ */
+    nav {
+      background: rgba(5,8,15,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--space-border);
+      padding: 0 clamp(24px,5vw,80px);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 36px;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 17px;
+      color: var(--text-primary);
+      letter-spacing: 0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta {
+      background: var(--amber);
+      color: #000;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: filter .2s, transform .15s;
+    }
+    .nav-cta:hover { filter: brightness(1.1); transform: scale(1.02); }
+
+    /* ════════════════════════════════
+       HERO
+    ════════════════════════════════ */
+    .hero {
+      background: var(--space-black);
+      background-image: radial-gradient(ellipse at 68% 50%, #1a1300 0%, var(--space-black) 60%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 clamp(24px,6vw,80px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ambient amber glow behind globe area */
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 540px;
+      height: 540px;
+      background: radial-gradient(circle, rgba(255,191,0,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 400px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Eyebrow */
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-dot 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse-dot {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50%      { transform: scale(1.6); opacity: 0.4; }
+    }
+    .eyebrow-text {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    /* Headline */
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(36px, 4vw, 48px);
+      line-height: 1.08;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+    .hero-h1 .accent { color: var(--amber); }
+
+    /* Subheadline */
+    .hero-sub {
+      font-size: 15px;
+      line-height: 1.72;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    /* CTAs */
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .btn-primary {
+      background: var(--amber);
+      color: #000;
+      border: none;
+      padding: 13px 28px;
+      border-radius: 6px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: filter .2s, transform .15s;
+    }
+    .btn-primary:hover { filter: brightness(1.1); transform: scale(1.02); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--space-border);
+      padding: 13px 28px;
+      border-radius: 6px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-secondary:hover { border-color: var(--amber); color: var(--text-primary); }
+
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .stat + .stat { padding-left: 20px; margin-left: 20px; border-left: 1px solid var(--space-border); }
+    .stat-val {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .stat-val.amber  { color: var(--amber); }
+    .stat-val.green  { color: var(--green); }
+    .stat-val.white  { color: var(--text-primary); }
+    .stat-label {
+      font-size: 10px;
+      color: var(--text-secondary);
+      line-height: 1.3;
+    }
+
+    /* Globe placeholder */
+    .globe-placeholder {
+      position: absolute;
+      right: 80px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 520px;
+      height: 520px;
+      pointer-events: none;
+    }
+    .globe-svg { width: 100%; height: 100%; }
+
+    /* Coordinate tag */
+    .coord-tag {
+      position: absolute;
+      bottom: 20px;
+      right: 3%;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #243450;
+      letter-spacing: 1.5px;
+    }
+
+    /* ════════════════════════════════
+       PROOF BAR
+    ════════════════════════════════ */
+    .proof-bar {
+      background: var(--space-dark);
+      border-top: 1px solid var(--space-border);
+      border-bottom: 1px solid var(--space-border);
+      padding: 18px 0;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      white-space: nowrap;
+      animation: marquee 40s linear infinite;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .proof-dot { color: var(--green); font-size: 13px; }
+    .proof-text { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); }
+
+    /* ════════════════════════════════
+       SECTION SHARED
+    ════════════════════════════════ */
+    section { padding: clamp(60px,8vw,96px) clamp(24px,5vw,80px); }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-header { margin-bottom: 48px; }
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(28px,3vw,40px);
+      color: var(--text-primary);
+      margin-top: 12px;
+      line-height: 1.15;
+    }
+    .section-header p { color: var(--text-secondary); margin-top: 12px; max-width: 520px; }
+
+    /* ════════════════════════════════
+       SERVICES GRID
+    ════════════════════════════════ */
+    .services-section { background: var(--space-dark); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .services-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 580px) { .services-grid { grid-template-columns: 1fr; } }
+
+    .service-card {
+      background: var(--space-card);
+      border: 1px solid var(--space-border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform .25s, border-color .25s;
+      cursor: pointer;
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-card.amber  { border-top: 3px solid var(--amber); }
+    .service-card.amber:hover { border-color: var(--amber); }
+    .service-card.green  { border-top: 3px solid var(--green); }
+    .service-card.green:hover { border-color: var(--green); }
+    .service-card.purple { border-top: 3px solid var(--purple); }
+    .service-card.purple:hover { border-color: var(--purple); }
+
+    .card-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-primary);
+    }
+    .card-divider {
+      height: 1px;
+      background: var(--space-border);
+    }
+    .card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+    .card-metric { font-family: var(--font-mono); font-size: 12px; }
+    .card-metric.amber  { color: var(--amber); }
+    .card-metric.green  { color: var(--green); }
+    .card-metric.purple { color: var(--purple); }
+    .card-link { font-size: 13px; color: var(--text-secondary); }
+    .service-card:hover .card-link { color: var(--amber); }
+
+    /* ════════════════════════════════
+       WHY DIFFERENT
+    ════════════════════════════════ */
+    .why-section { background: var(--space-black); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    @media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .why-statement h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(32px,3.5vw,46px);
+      color: var(--text-primary);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .why-statement p { color: var(--text-secondary); font-size: 17px; line-height: 1.7; }
+    .proof-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .proof-point {
+      background: var(--space-dark);
+      border: 1px solid var(--space-border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .proof-val {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+    .proof-val.amber  { color: var(--amber); }
+    .proof-val.green  { color: var(--green); }
+    .proof-val.purple { color: var(--purple); }
+    .proof-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.4; }
+
+    /* ════════════════════════════════
+       CTA SECTION
+    ════════════════════════════════ */
+    .cta-section {
+      background: var(--space-black);
+      background-image: radial-gradient(ellipse at 50% 50%, rgba(255,191,0,0.06) 0%, transparent 70%);
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(28px,3.5vw,44px);
+      color: var(--text-primary);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cta-section p { color: var(--text-secondary); font-size: 17px; margin-bottom: 40px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
+    footer {
+      background: var(--space-black);
+      border-top: 1px solid var(--space-border);
+      padding: 48px clamp(24px,5vw,80px) 28px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 768px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+    .footer-tagline { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+    .footer-col h4 {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-bottom: 9px;
+      transition: color .2s;
+    }
+    .footer-col a:hover { color: var(--amber); }
+    .footer-bottom {
+      border-top: 1px solid var(--space-border);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy { font-size: 13px; color: var(--text-secondary); }
+    .footer-coord {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #243450;
+      letter-spacing: 1.5px;
+    }
+
+    /* ════════════════════════════════
+       COLOR SWATCH COMPARISON
+    ════════════════════════════════ */
+    .comparison {
+      background: var(--space-dark);
+      border-top: 1px solid var(--space-border);
+      padding: 48px clamp(24px,5vw,80px);
+    }
+    .comparison-inner { max-width: 1200px; margin: 0 auto; }
+    .comparison h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .comparison p { font-size: 13px; color: var(--text-secondary); margin-bottom: 28px; }
+    .swatch-row { display: flex; gap: 24px; flex-wrap: wrap; }
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--space-card);
+      border: 1px solid var(--space-border);
+      border-radius: 10px;
+      padding: 14px 20px;
+      min-width: 240px;
+    }
+    .swatch-dot { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; }
+    .swatch-info { display: flex; flex-direction: column; gap: 2px; }
+    .swatch-label { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .swatch-hex { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); }
+    .swatch-role { font-size: 11px; color: var(--text-secondary); }
+    .arrow { font-size: 20px; color: var(--text-secondary); align-self: center; }
+  </style>
+</head>
+<body>
+
+<!-- Preview banner -->
+<div class="preview-banner">
+  AMBER THEME PREVIEW — #FFBF00 replacing Electric Blue #4F8EF7
+  <span>|</span>
+  This file is read-only — current website unchanged
+  <span>|</span>
+  public/preview-amber.html
+</div>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">QUANTUM ATLAS</div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Industries</a></li>
+    <li><a href="#">Knowledge</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <button class="nav-cta">Book a Call</button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-content">
+
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      <span class="eyebrow-text">Quantum Atlas · AI Infrastructure</span>
+    </div>
+
+    <h1 class="hero-h1">
+      Built in<br>
+      Production.<br>
+      <span class="accent">Proven at Scale.</span>
+    </h1>
+
+    <p class="hero-sub">
+      AI systems that run in the real world —<br>
+      voice agents, document intelligence,<br>
+      knowledge systems and custom SaaS.<br>
+      Self-hosted. Enterprise-grade.
+    </p>
+
+    <div class="cta-row">
+      <button class="btn-primary">Book a Discovery Call</button>
+      <button class="btn-secondary">See Our Work →</button>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-val green">$0.08</span>
+        <span class="stat-label">Per page · IDP</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val amber">4 mo</span>
+        <span class="stat-label">Voice · Live</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val white">1000+</span>
+        <span class="stat-label">Corporate clients</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val amber">Govt</span>
+        <span class="stat-label">RAG · Active</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Globe SVG stand-in (amber-tinted) -->
+  <div class="globe-placeholder">
+    <svg class="globe-svg" viewBox="0 0 520 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"  stop-color="#FFBF00" stop-opacity="0.08"/>
+          <stop offset="100%" stop-color="#FFBF00" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Glow backdrop -->
+      <circle cx="260" cy="260" r="240" fill="url(#glow)"/>
+
+      <!-- Atmosphere ring -->
+      <circle cx="260" cy="260" r="224" stroke="rgba(255,191,0,0.04)" stroke-width="3" fill="none"/>
+      <!-- Outer ring -->
+      <circle cx="260" cy="260" r="214" stroke="rgba(255,191,0,0.12)" stroke-width="1.5" fill="none"/>
+      <!-- Equatorial ring -->
+      <ellipse cx="260" cy="260" rx="210" ry="20" stroke="rgba(255,191,0,0.42)" stroke-width="1" fill="none"/>
+
+      <!-- Latitude rings -->
+      <ellipse cx="260" cy="186" rx="182" ry="17" stroke="rgba(255,191,0,0.14)" stroke-width="1" fill="none"/>
+      <ellipse cx="260" cy="222" rx="204" ry="19" stroke="rgba(255,191,0,0.14)" stroke-width="1" fill="none"/>
+      <ellipse cx="260" cy="298" rx="204" ry="19" stroke="rgba(255,191,0,0.14)" stroke-width="1" fill="none"/>
+      <ellipse cx="260" cy="334" rx="182" ry="17" stroke="rgba(255,191,0,0.14)" stroke-width="1" fill="none"/>
+      <ellipse cx="260" cy="148" rx="140" ry="13" stroke="rgba(255,191,0,0.14)" stroke-width="1" fill="none"/>
+      <ellipse cx="260" cy="372" rx="140" ry="13" stroke="rgba(255,191,0,0.14)" stroke-width="1" fill="none"/>
+
+      <!-- Longitude lines (solid) -->
+      <ellipse cx="260" cy="260" rx="210" ry="210" stroke="rgba(255,191,0,0.15)" stroke-width="1" fill="none"/>
+      <line x1="260" y1="50" x2="260" y2="470" stroke="rgba(255,191,0,0.15)" stroke-width="1"/>
+      <ellipse cx="260" cy="260" rx="105" ry="210" stroke="rgba(255,191,0,0.15)" stroke-width="1" fill="none"/>
+      <ellipse cx="260" cy="260" rx="180" ry="210" stroke="rgba(255,191,0,0.08)" stroke-width="0.8" stroke-dasharray="3 8" fill="none"/>
+      <ellipse cx="260" cy="260" rx="55"  ry="210" stroke="rgba(255,191,0,0.08)" stroke-width="0.8" stroke-dasharray="3 8" fill="none"/>
+
+      <!-- Nodes -->
+      <circle cx="260" cy="50"  r="1.8" fill="#FFBF00" opacity="0.6"/>
+      <circle cx="260" cy="470" r="1.8" fill="#FFBF00" opacity="0.6"/>
+      <circle cx="50"  cy="260" r="4"   fill="#FFBF00" opacity="0.8"/>
+      <circle cx="470" cy="260" r="4"   fill="#FFBF00" opacity="0.8"/>
+      <circle cx="365" cy="150" r="1.8" fill="#FFBF00" opacity="0.6"/>
+      <circle cx="155" cy="150" r="4"   fill="#FFBF00" opacity="0.9"/>
+      <circle cx="155" cy="370" r="1.8" fill="#FFBF00" opacity="0.6"/>
+      <circle cx="365" cy="370" r="4"   fill="#FFBF00" opacity="0.8"/>
+      <circle cx="390" cy="210" r="1.8" fill="#FFBF00" opacity="0.5"/>
+      <circle cx="130" cy="310" r="1.8" fill="#FFBF00" opacity="0.5"/>
+      <circle cx="310" cy="120" r="1.8" fill="#FFBF00" opacity="0.5"/>
+      <circle cx="210" cy="400" r="4"   fill="#FFBF00" opacity="0.7"/>
+
+      <!-- Connection lines (segmented) -->
+      <line x1="155" y1="150" x2="260" y2="50"  stroke="rgba(255,191,0,0.35)" stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="155" y1="150" x2="50"  y2="260"  stroke="rgba(255,191,0,0.35)" stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="365" y1="150" x2="470" y2="260"  stroke="rgba(255,191,0,0.25)" stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="365" y1="370" x2="470" y2="260"  stroke="rgba(255,191,0,0.25)" stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="155" y1="150" x2="365" y2="150"  stroke="rgba(255,191,0,0.2)"  stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="210" y1="400" x2="365" y2="370"  stroke="rgba(255,191,0,0.2)"  stroke-width="1" stroke-dasharray="4 3"/>
+
+      <!-- Signal pulses (amber / green / purple) -->
+      <!-- Amber pulse -->
+      <circle cx="208" cy="100" r="2.8" fill="#FFBF00">
+        <animateMotion dur="4s" repeatCount="indefinite" path="M155,150 L260,50"/>
+      </circle>
+      <circle cx="208" cy="100" r="7" fill="rgba(255,191,0,0.15)">
+        <animateMotion dur="4s" repeatCount="indefinite" path="M155,150 L260,50"/>
+      </circle>
+
+      <!-- Green pulse -->
+      <circle cx="100" cy="205" r="2.8" fill="#00E5A0">
+        <animateMotion dur="5s" repeatCount="indefinite" path="M155,150 L50,260"/>
+      </circle>
+      <circle cx="100" cy="205" r="7" fill="rgba(0,229,160,0.15)">
+        <animateMotion dur="5s" repeatCount="indefinite" path="M155,150 L50,260"/>
+      </circle>
+
+      <!-- Purple pulse -->
+      <circle cx="415" cy="205" r="2.8" fill="#A855F7">
+        <animateMotion dur="3.5s" repeatCount="indefinite" path="M365,150 L470,260"/>
+      </circle>
+      <circle cx="415" cy="205" r="7" fill="rgba(168,85,247,0.15)">
+        <animateMotion dur="3.5s" repeatCount="indefinite" path="M365,150 L470,260"/>
+      </circle>
+
+      <!-- Second amber pulse (different edge) -->
+      <circle cx="420" cy="315" r="2.8" fill="#FFBF00">
+        <animateMotion dur="4.5s" repeatCount="indefinite" begin="1s" path="M365,370 L470,260"/>
+      </circle>
+      <circle cx="420" cy="315" r="7" fill="rgba(255,191,0,0.15)">
+        <animateMotion dur="4.5s" repeatCount="indefinite" begin="1s" path="M365,370 L470,260"/>
+      </circle>
+    </svg>
+  </div>
+
+  <div class="coord-tag">18.9667° N · 72.8333° E · MUMBAI</div>
+</section>
+
+<!-- ── PROOF BAR ── -->
+<div class="proof-bar">
+  <div class="marquee-track">
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">4 months production · Voice AI</span></div>
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">Government RAG deployment · Active</span></div>
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">1000+ corporate clients</span></div>
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">$0.08 per page · Document processing</span></div>
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">Self-hosted · Zero vendor lock-in</span></div>
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">On-premise deployment · Government-ready</span></div>
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">40+ years industry presence</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">4 months production · Voice AI</span></div>
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">Government RAG deployment · Active</span></div>
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">1000+ corporate clients</span></div>
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">$0.08 per page · Document processing</span></div>
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">Self-hosted · Zero vendor lock-in</span></div>
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">On-premise deployment · Government-ready</span></div>
+    <div class="proof-item"><span class="proof-dot">◆</span><span class="proof-text">40+ years industry presence</span></div>
+  </div>
+</div>
+
+<!-- ── SERVICES GRID ── -->
+<section class="services-section">
+  <div class="section-inner">
+    <div class="section-header" style="text-align:center">
+      <p class="label">Our Services</p>
+      <h2>The full stack. Under one roof.</h2>
+      <p>One partner for voice AI, document intelligence, RAG systems, and custom SaaS — so you never need a second vendor.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card amber">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFBF00" stroke-width="2"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </div>
+        <div class="card-name">AI Voice Agents</div>
+        <div class="card-divider"></div>
+        <p class="card-desc">Self-hosted inbound and outbound voice agents with Airtel/Jio native integration.</p>
+        <p class="card-metric amber">$0.08/min · 4 months production</p>
+        <span class="card-link">Learn more →</span>
+      </div>
+
+      <div class="service-card green">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E5A0" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="card-name">Document Intelligence</div>
+        <div class="card-divider"></div>
+        <p class="card-desc">Bulk document processing pipeline — hundreds of documents in minutes.</p>
+        <p class="card-metric green">$0.08/page · 10x faster processing</p>
+        <span class="card-link">Learn more →</span>
+      </div>
+
+      <div class="service-card purple">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <div class="card-name">Enterprise RAG</div>
+        <div class="card-divider"></div>
+        <p class="card-desc">Hybrid retrieval knowledge systems with citations on every answer.</p>
+        <p class="card-metric purple">Government-grade · On-premise ready</p>
+        <span class="card-link">Learn more →</span>
+      </div>
+
+      <div class="service-card amber">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFBF00" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="card-name">Custom SaaS Development</div>
+        <div class="card-divider"></div>
+        <p class="card-desc">Full multi-tenant SaaS platforms built from scratch. No templates.</p>
+        <p class="card-metric amber">Production-ready · Multi-tenant</p>
+        <span class="card-link">Learn more →</span>
+      </div>
+
+      <div class="service-card green">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E5A0" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="card-name">AI Automation</div>
+        <div class="card-divider"></div>
+        <p class="card-desc">LangGraph + n8n orchestration for complex enterprise workflows.</p>
+        <p class="card-metric green">15-person team reduced to 2 · Proven</p>
+        <span class="card-link">Learn more →</span>
+      </div>
+
+      <div class="service-card purple">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <div class="card-name">Content &amp; Video</div>
+        <div class="card-divider"></div>
+        <p class="card-desc">ComfyUI-powered avatars, lipsync, and enterprise video production.</p>
+        <p class="card-metric purple">ComfyUI · Tavus · One vendor</p>
+        <span class="card-link">Learn more →</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY DIFFERENT ── -->
+<section class="why-section">
+  <div class="section-inner">
+    <p class="label amber" style="margin-bottom:48px">Why Quantum Atlas</p>
+    <div class="why-grid">
+      <div class="why-statement">
+        <h2>Production proof.<br>Not promises.</h2>
+        <p>Every system we offer has been running in production in our own companies. We are our own most demanding client.</p>
+      </div>
+      <div class="proof-points">
+        <div class="proof-point">
+          <div class="proof-val amber">◆ $0.08/min</div>
+          <div class="proof-desc">Voice AI cost — 10x below market</div>
+        </div>
+        <div class="proof-point">
+          <div class="proof-val amber">◆ $0.08/page</div>
+          <div class="proof-desc">Document processing — 3.5x below Nanonets</div>
+        </div>
+        <div class="proof-point">
+          <div class="proof-val green">◆ 4 months</div>
+          <div class="proof-desc">Voice AI in production — Navbharat Shipping</div>
+        </div>
+        <div class="proof-point">
+          <div class="proof-val amber">◆ 1000+</div>
+          <div class="proof-desc">Corporate clients — existing relationships</div>
+        </div>
+        <div class="proof-point">
+          <div class="proof-val purple">◆ ERP replaced</div>
+          <div class="proof-desc">Custom-built iKargos platform from scratch</div>
+        </div>
+        <div class="proof-point">
+          <div class="proof-val green">◆ 15 → 2</div>
+          <div class="proof-desc">Staff reduction — internal automation proof</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="section-inner">
+    <h2>Ready to build something<br>that actually works?</h2>
+    <p>Not a demo. Not a PoC. A production system.<br>Let us show you what we have running today.</p>
+    <div class="cta-buttons">
+      <button class="btn-primary">Book a Discovery Call</button>
+      <button class="btn-secondary">See All Services</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">QUANTUM ATLAS</div>
+        <p class="footer-tagline">Built in Production.<br>Proven at Scale.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#">AI Voice Agents</a>
+        <a href="#">Document Intelligence</a>
+        <a href="#">Enterprise RAG</a>
+        <a href="#">Custom SaaS Dev</a>
+        <a href="#">AI Automation</a>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <a href="#">Government</a>
+        <a href="#">Logistics</a>
+        <a href="#">Fintech &amp; BFSI</a>
+        <a href="#">Legal</a>
+        <a href="#">Healthcare</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Knowledge Hub</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Quantum Atlas. All rights reserved.</span>
+      <span class="footer-coord">18.9667° N · 72.8333° E · MUMBAI</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ── SWATCH COMPARISON ── -->
+<div class="comparison">
+  <div class="comparison-inner">
+    <h3>Color Swap Reference</h3>
+    <p>What changes vs what stays the same</p>
+    <div class="swatch-row">
+      <div class="swatch">
+        <div class="swatch-dot" style="background:#4F8EF7"></div>
+        <div class="swatch-info">
+          <span class="swatch-label">Electric Blue (current)</span>
+          <span class="swatch-hex">#4F8EF7</span>
+          <span class="swatch-role">CTAs, globe, nav, accent text</span>
+        </div>
+      </div>
+      <span class="arrow">→</span>
+      <div class="swatch">
+        <div class="swatch-dot" style="background:#FFBF00"></div>
+        <div class="swatch-info">
+          <span class="swatch-label">Amber (proposed)</span>
+          <span class="swatch-hex">#FFBF00</span>
+          <span class="swatch-role">Same roles — all blue replaced</span>
+        </div>
+      </div>
+      <div class="swatch" style="margin-left:32px">
+        <div class="swatch-dot" style="background:#00E5A0"></div>
+        <div class="swatch-info">
+          <span class="swatch-label">Quantum Green (unchanged)</span>
+          <span class="swatch-hex">#00E5A0</span>
+          <span class="swatch-role">Eyebrow dot, IDP service, proof bar</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-dot" style="background:#A855F7"></div>
+        <div class="swatch-info">
+          <span class="swatch-label">Atlas Purple (unchanged)</span>
+          <span class="swatch-hex">#A855F7</span>
+          <span class="swatch-role">RAG service, tertiary signals</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

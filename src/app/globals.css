@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@theme {
+  --color-space-black: #05080F;
+  --color-space-dark: #0D1117;
+  --color-space-card: #13192A;
+  --color-space-border: #1E2D4A;
+  --color-space-light: #F0F4FF;
+  --color-electric-blue: #FFBF00;
+  --color-quantum-green: #00E5A0;
+  --color-atlas-purple: #A855F7;
+  --color-text-primary: #E8EEFF;
+  --color-text-secondary: #8896B3;
+  --color-mono-accent: #64FFDA;
+
+  --font-display: var(--font-space-grotesk), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  --radius: 0.5rem;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.4; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-space-border);
+  }
+
+  body {
+    background-color: var(--color-space-dark);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
