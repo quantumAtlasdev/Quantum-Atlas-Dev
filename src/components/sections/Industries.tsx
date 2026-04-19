@@ -67,14 +67,23 @@ export function Industries() {
   const current = industries.find((i) => i.id === active) ?? industries[0]
 
   return (
-    <section className="py-24 px-6 lg:px-8" style={{ background: '#05080F' }}>
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-24 px-6 lg:px-8" style={{ background: '#0C0A08' }}>
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            'linear-gradient(currentcolor 1px, transparent 1px), linear-gradient(90deg, currentcolor 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+        }}
+      />
+      <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
           className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           <p className="text-quantum-green text-[11px] tracking-[3px] uppercase mb-4" style={{ fontFamily: 'var(--font-mono)' }}>
             Industries We Serve
@@ -93,8 +102,8 @@ export function Industries() {
               className="px-4 py-2 rounded-full text-sm font-medium transition-all border"
               style={{
                 background: active === ind.id ? '#FFBF00' : 'transparent',
-                color: active === ind.id ? '#fff' : '#8896B3',
-                borderColor: active === ind.id ? '#FFBF00' : '#1E2D4A',
+                color: active === ind.id ? '#fff' : '#A8998A',
+                borderColor: active === ind.id ? '#FFBF00' : '#2E261F',
                 fontFamily: 'var(--font-display)',
               }}
             >
@@ -112,7 +121,7 @@ export function Industries() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
             className="rounded-xl border border-space-border p-8 grid grid-cols-1 md:grid-cols-3 gap-8"
-            style={{ background: '#13192A' }}
+            style={{ background: '#171411' }}
           >
             <div className="md:col-span-2">
               <h3 className="text-xl font-semibold text-text-primary mb-3" style={{ fontFamily: 'var(--font-display)' }}>

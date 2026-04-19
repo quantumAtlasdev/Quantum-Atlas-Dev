@@ -57,28 +57,39 @@ const services = [
 
 const container: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.12 } },
 }
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 70, rotate: -1 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' as const },
+    rotate: 0,
+    transition: { duration: 0.7, ease: 'easeOut' as const },
   },
 }
 
 export function ServicesGrid() {
   return (
-    <section className="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
+    <section className="relative py-24 px-6 lg:px-8" style={{ background: '#12100D' }}>
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            'linear-gradient(currentcolor 1px, transparent 1px), linear-gradient(90deg, currentcolor 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+        }}
+      />
+      <div className="relative z-10 max-w-7xl mx-auto">
       {/* Section header */}
       <motion.div
         className="text-center mb-16"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
       >
         <p
           className="text-quantum-green text-[11px] tracking-[3px] uppercase mb-4"
@@ -114,7 +125,7 @@ export function ServicesGrid() {
                 href={svc.href}
                 className="group flex flex-col h-full p-6 rounded-xl border border-space-border hover:-translate-y-1 hover:border-opacity-80 transition-all duration-300"
                 style={{
-                  background: '#13192A',
+                  background: '#171411',
                   borderTop: `3px solid ${svc.color}`,
                 }}
               >
@@ -145,6 +156,7 @@ export function ServicesGrid() {
           )
         })}
       </motion.div>
+      </div>
     </section>
   )
 }

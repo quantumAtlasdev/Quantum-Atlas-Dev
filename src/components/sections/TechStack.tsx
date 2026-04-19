@@ -38,14 +38,23 @@ const rows = [
 
 export function TechStack() {
   return (
-    <section className="py-24 px-6 lg:px-8" style={{ background: '#05080F' }}>
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-24 px-6 lg:px-8" style={{ background: '#0C0A08' }}>
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            'linear-gradient(currentcolor 1px, transparent 1px), linear-gradient(90deg, currentcolor 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+        }}
+      />
+      <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
           className="mb-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           <p className="text-quantum-green text-[11px] tracking-[3px] uppercase mb-4" style={{ fontFamily: 'var(--font-mono)' }}>
             The Stack
@@ -63,10 +72,10 @@ export function TechStack() {
           {rows.map((row, ri) => (
             <motion.div
               key={row.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.6, delay: ri * 0.1 }}
+              initial={{ opacity: 0, y: 60, x: ri % 2 === 0 ? -40 : 40 }}
+              whileInView={{ opacity: 1, y: 0, x: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: ri * 0.12 }}
             >
               <p
                 className="text-[11px] tracking-[2px] uppercase text-text-secondary mb-6"
@@ -79,7 +88,7 @@ export function TechStack() {
                   <div
                     key={item.name}
                     className="group p-4 rounded-xl border border-space-border hover:border-electric-blue/40 transition-all cursor-default"
-                    style={{ background: '#13192A' }}
+                    style={{ background: '#171411' }}
                   >
                     <p
                       className="text-text-secondary group-hover:text-text-primary font-semibold text-sm mb-2 transition-colors"

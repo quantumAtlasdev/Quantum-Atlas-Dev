@@ -2,16 +2,16 @@
 @plugin "tailwindcss-animate";
 
 @theme {
-  --color-space-black: #05080F;
-  --color-space-dark: #0D1117;
-  --color-space-card: #13192A;
-  --color-space-border: #1E2D4A;
-  --color-space-light: #F0F4FF;
+  --color-space-black: #0C0A08;
+  --color-space-dark: #12100D;
+  --color-space-card: #171411;
+  --color-space-border: #2E261F;
+  --color-space-light: #FAF7F5;
   --color-electric-blue: #FFBF00;
   --color-quantum-green: #00E5A0;
   --color-atlas-purple: #A855F7;
-  --color-text-primary: #E8EEFF;
-  --color-text-secondary: #8896B3;
+  --color-text-primary: #FAF7F5;
+  --color-text-secondary: #A8998A;
   --color-mono-accent: #64FFDA;
 
   --font-display: var(--font-space-grotesk), sans-serif;
@@ -40,7 +40,7 @@
   }
 
   body {
-    background-color: var(--color-space-dark);
+    background-color: var(--color-space-black);
     color: var(--color-text-primary);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;

@@ -16,7 +16,7 @@ export function ProofBar() {
   return (
     <div
       className="w-full overflow-hidden border-t border-b border-space-border py-5"
-      style={{ background: '#0D1117' }}
+      style={{ background: '#12100D' }}
       aria-label="Proof points"
     >
       <div

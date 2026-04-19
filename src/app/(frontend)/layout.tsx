@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { ChatWidget } from '@/components/chat/ChatWidget'
 
 export default function FrontendLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,6 +8,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
       <Navbar />
       <main>{children}</main>
       <Footer />
+      <ChatWidget />
     </>
   )
 }

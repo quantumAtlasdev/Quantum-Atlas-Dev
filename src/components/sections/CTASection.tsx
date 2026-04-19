@@ -5,18 +5,27 @@ import { motion } from 'framer-motion'
 export function CTASection() {
   return (
     <section
-      className="py-32 px-6 lg:px-8 text-center relative overflow-hidden"
+      className="py-32 px-6 lg:px-8 text-center relative"
       style={{
-        background: '#05080F',
-        backgroundImage: 'radial-gradient(ellipse at 50% 50%, rgba(255,191,0,0.08) 0%, transparent 70%)',
+        background: '#0C0A08',
+        backgroundImage: 'radial-gradient(ellipse at 50% 50%, rgba(255,191,0,0.07) 0%, transparent 70%)',
       }}
     >
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            'linear-gradient(currentcolor 1px, transparent 1px), linear-gradient(90deg, currentcolor 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+        }}
+      />
       <div className="max-w-3xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 70 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.7 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.85, ease: 'easeOut' }}
         >
           <h2
             className="text-4xl lg:text-5xl font-bold text-text-primary mb-6 leading-[1.1]"

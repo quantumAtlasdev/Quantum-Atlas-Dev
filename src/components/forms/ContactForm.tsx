@@ -36,7 +36,7 @@ export function ContactForm() {
       if (!res.ok) throw new Error('Submission failed')
       setSubmitted(true)
     } catch {
-      setError('Something went wrong. Please email us directly at hello@quantumatlas.ai')
+      setError('Something went wrong. Please email us directly at contact@quantumatlas.dev')
     } finally {
       setSubmitting(false)
     }

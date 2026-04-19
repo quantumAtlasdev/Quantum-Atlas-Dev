@@ -27,7 +27,7 @@ const jsonLd = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'sales',
-    email: 'hello@quantumatlas.ai',
+    email: 'contact@quantumatlas.dev',
   },
 }
 
@@ -78,11 +78,11 @@ export default function ContactPage() {
             >
               <p className="text-text-secondary text-sm mb-1">Direct contact</p>
               <a
-                href="mailto:hello@quantumatlas.ai"
+                href="mailto:contact@quantumatlas.dev"
                 className="text-electric-blue font-medium hover:underline"
                 style={{ fontFamily: 'var(--font-mono)' }}
               >
-                hello@quantumatlas.ai
+                contact@quantumatlas.dev
               </a>
               <p className="text-text-secondary text-sm mt-2">Response within 24 hours</p>
             </div>

@@ -13,16 +13,26 @@ const proofPoints = [
 export function WhyDifferent() {
   return (
     <section
-      className="py-24 px-6 lg:px-8"
-      style={{ background: '#05080F' }}
+      className="relative py-24 px-6 lg:px-8"
+      style={{ background: '#0C0A08' }}
     >
-      <div className="max-w-7xl mx-auto">
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            'linear-gradient(currentcolor 1px, transparent 1px), linear-gradient(90deg, currentcolor 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+        }}
+      />
+      <div className="relative z-10 max-w-7xl mx-auto">
         <motion.p
           className="text-quantum-green text-[11px] tracking-[3px] uppercase mb-12"
           style={{ fontFamily: 'var(--font-mono)' }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           Why Quantum Atlas
         </motion.p>
@@ -30,10 +40,10 @@ export function WhyDifferent() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: statement */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.85, ease: 'easeOut' }}
           >
             <h2
               className="text-4xl lg:text-5xl font-bold text-text-primary leading-[1.1] mb-6"
@@ -50,16 +60,16 @@ export function WhyDifferent() {
           {/* Right: proof points grid */}
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.85, ease: 'easeOut', delay: 0.12 }}
           >
             {proofPoints.map((pt, i) => (
               <div
                 key={i}
                 className="flex flex-col gap-1 p-4 rounded-lg border border-space-border"
-                style={{ background: '#0D1117' }}
+                style={{ background: '#12100D' }}
               >
                 <span
                   className="text-xl font-bold"

@@ -87,14 +87,23 @@ function WhitepaperGate() {
 
 export function KnowledgePreview() {
   return (
-    <section className="py-24 px-6 lg:px-8" style={{ background: '#0D1117' }}>
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-24 px-6 lg:px-8" style={{ background: '#12100D' }}>
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            'linear-gradient(currentcolor 1px, transparent 1px), linear-gradient(90deg, currentcolor 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+        }}
+      />
+      <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
           className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           <p className="text-quantum-green text-[11px] tracking-[3px] uppercase mb-4" style={{ fontFamily: 'var(--font-mono)' }}>
             Knowledge Hub
@@ -110,15 +119,15 @@ export function KnowledgePreview() {
             {placeholderPosts.map((post, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                initial={{ opacity: 0, y: 60, x: -40 }}
+                whileInView={{ opacity: 1, y: 0, x: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.75, ease: 'easeOut', delay: i * 0.12 }}
               >
                 <Link
                   href={post.href}
                   className="flex flex-col gap-3 p-5 rounded-xl border border-space-border hover:border-electric-blue/40 transition-all group"
-                  style={{ background: '#13192A' }}
+                  style={{ background: '#171411' }}
                 >
                   <div className="flex items-center gap-3">
                     <span
@@ -151,11 +160,11 @@ export function KnowledgePreview() {
           {/* Whitepaper gate — right column */}
           <motion.div
             className="rounded-xl border border-space-border p-6"
-            style={{ background: '#13192A', borderTop: '3px solid #A855F7' }}
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7 }}
+            style={{ background: '#171411', borderTop: '3px solid #A855F7' }}
+            initial={{ opacity: 0, x: 80, y: 30 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.85, ease: 'easeOut', delay: 0.1 }}
           >
             <p
               className="text-atlas-purple text-[10px] tracking-[2px] uppercase mb-3"

@@ -27,14 +27,23 @@ const engagements = [
 
 export function ActiveEngagements() {
   return (
-    <section className="py-24 px-6 lg:px-8" style={{ background: '#0D1117' }}>
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-24 px-6 lg:px-8" style={{ background: '#12100D' }}>
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            'linear-gradient(currentcolor 1px, transparent 1px), linear-gradient(90deg, currentcolor 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+        }}
+      />
+      <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
           className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           <p className="text-quantum-green text-[11px] tracking-[3px] uppercase mb-4" style={{ fontFamily: 'var(--font-mono)' }}>
             Active Engagements
@@ -49,11 +58,11 @@ export function ActiveEngagements() {
             <motion.div
               key={i}
               className="rounded-xl border border-space-border p-6"
-              style={{ background: '#13192A', borderTop: `3px solid ${eng.color}` }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              style={{ background: '#171411', borderTop: `3px solid ${eng.color}` }}
+              initial={{ opacity: 0, y: 70, rotate: 1 }}
+              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.75, ease: 'easeOut', delay: i * 0.12 }}
             >
               <div className="flex items-center gap-2 mb-4">
                 <span
