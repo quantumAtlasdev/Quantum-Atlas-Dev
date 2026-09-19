@@ -15,7 +15,7 @@
 | **Main VPS** | Quantum Atlas website, LiveKit agent | 173.212.246.44 | — | Ubuntu |
 
 All servers are interconnected via **Tailscale** — use Tailscale IPs for internal SSH.
-SSH access: `ssh root@<tailscale-ip>` (root login, key-based or password `AndreW3050`).
+SSH access: `ssh root@<tailscale-ip>` (root login, key-based or password `4xz@2IyIXpI6W#y5!NSY`).
 
 ---
 
@@ -29,7 +29,7 @@ SSH access: `ssh root@<tailscale-ip>` (root login, key-based or password `AndreW
 ### Stack
 - **Next.js 16.2** (App Router, Turbopack, TypeScript)
 - **Payload CMS 3.x** — admin at `/admin`
-- **PostgreSQL** — `postgresql://quantumatlasdev:AndreW3050@localhost:5432/quantum_atlas_Dev`
+- **PostgreSQL** — `postgresql://quantumatlasdev:4xz@2IyIXpI6W#y5!NSY@localhost:5432/quantum_atlas_Dev`
 - **pnpm** — package manager (never npm/yarn)
 
 ### Start / Restart
@@ -43,7 +43,7 @@ pm2 save
 File: `/opt/Quantum-Atlas-Dev/.env`
 Key vars:
 ```
-DATABASE_URI=postgresql://quantumatlasdev:AndreW3050@localhost:5432/quantum_atlas_Dev
+DATABASE_URI=postgresql://quantumatlasdev:4xz@2IyIXpI6W#y5!NSY@localhost:5432/quantum_atlas_Dev
 PAYLOAD_SECRET=<secret>
 OPENAI_API_KEY=<key>
 OPENAI_ASSISTANT_ID=asst_N9FHILecF68s3PLMIGIUigMA
@@ -364,5 +364,5 @@ pm2 save
 | LiveKit agent env vars | `/opt/apps/livekit-agent/.env` on Main VPS |
 | RAG API key (voice agent) | In `.env` above as `RAG_API_KEY` |
 | MCP Gateway config (with creds) | `/opt/apps/mcp-gateway/config.json` on Prod Server |
-| PostgreSQL (main) | `AndreW3050` — see `.env` for full URIs |
-| SMTP | `contact@quantumatlas.dev` / `AndreW#3050` via Namecheap Private Email |
+| PostgreSQL (main) | `4xz@2IyIXpI6W#y5!NSY` — see `.env` for full URIs |
+| SMTP | `contact@quantumatlas.dev` / `4xz@2IyIXpI6W#y5!NSY` via Namecheap Private Email |
